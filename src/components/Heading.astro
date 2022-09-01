@@ -1,0 +1,37 @@
+---
+import { Data } from "../models";
+
+export interface Props {
+  data: Data;
+}
+const { data } = Astro.props;
+---
+
+<div class="heading">
+  <h1>
+    <strong>{data.profile.name.givenName}</strong>
+    {data.profile.name.surname}
+  </h1>
+  <div>{data.profile.title}</div>
+</div>
+<style lang="scss">
+  .heading {
+    font-family: lato;
+
+    h1 {
+      color: var(--dark-text-color);
+      strong {
+        font-weight: 700;
+      }
+
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    [role="doc-subtitle"] {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+  }
+</style>

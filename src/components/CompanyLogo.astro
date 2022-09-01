@@ -1,0 +1,16 @@
+---
+const {src} = Astro.props;
+---
+<div class="logo">
+<img src={src}/>
+</div>
+<style lang="scss">
+.logo {
+    width:10rem;
+    aspect-ratio: 16 / 9;
+    display:grid;
+    place-items: center;
+
+
+}
+</style>

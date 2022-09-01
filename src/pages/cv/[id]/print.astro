@@ -1,0 +1,57 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Page from "../../../components/Page.astro";
+import Heading from "../../../components/Heading.astro";
+import Introduction from "../../../components/Introduction.astro";
+import Experience from "../../../components/Experience.astro";
+import References from "../../../components/References.astro";
+import CompaniesGrid from "../../../components/CompaniesGrid.astro";
+import  allData from "../../../cvData";
+import '../../../data'
+
+export function getStaticPaths() {
+  return allData.map(({id}) => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const data = allData.find(x => x.id === id)
+
+const pages = [[]];
+const currentPage = () => pages[pages.length -1];
+const nextPage = () => pages.push([]);
+data.experience.forEach((item, index) => {
+  if(item.pageBreak === 'before') {
+      nextPage();
+  }
+
+  currentPage().push(item);
+  if(item.pageBreak === 'after') {
+    nextPage();
+  }
+});
+
+function pageNo(index) {
+  return index + 1;
+}
+
+function isLastPage(index) {
+  return index === (pages.length -1)
+}
+---
+
+<Layout title={data.pageTitle}>
+  {
+    pages.map((x, index) => (
+      <Page pageNumber={pageNo(index)} totalPages={pages.length} data={data}>
+        <Heading data={data} />
+        {pageNo(index) === 1 && <Introduction data={data} />}
+        {pageNo(index) === 1 && <CompaniesGrid data={data} id={id.toString()} />}
+        <Experience experience={pages[index]} />
+        {isLastPage(index) && <References data={data} />}
+      </Page>
+    ))
+  }
+</Layout>
+
+<style>
+</style>

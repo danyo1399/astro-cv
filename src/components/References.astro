@@ -1,0 +1,77 @@
+---
+import { Data } from "../models";
+import SubHeader from "./SubHeader.astro";
+
+export interface Props {
+  data: Data;
+}
+const { data } = Astro.props;
+const hasReferences = data.references.length > 0;
+---
+
+<section class={`references ${!hasReferences ? "on-request" : ""}`}>
+  <SubHeader>References</SubHeader>
+  <div class="contacts-container">
+    {
+      hasReferences ? (
+        data.references.map((x) => (
+          <div class="contact">
+            <div class="name">{x.name}</div>
+            <div class="role">{x.role}</div>
+
+            <div class="details">
+              <strong>Phone:</strong>
+              <div>{x.phone}</div>
+              <strong>Email:</strong>
+              <div>{x.email}</div>
+            </div>
+          </div>
+        ))
+      ) : (
+        <div class="on-request">Available on request</div>
+      )
+    }
+  </div>
+</section>
+
+<style lang="scss">
+
+  section.references {
+    .contacts-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .name {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .role {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto;
+      align-items:center;
+      font-size: 1rem;
+    }
+
+    strong {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-right: 1.5rem;
+    }
+  }
+  section.references.on-request {
+    display: none;
+    .contacts-container {
+        display: block;
+    }
+  }
+</style>

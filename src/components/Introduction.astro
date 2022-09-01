@@ -1,0 +1,19 @@
+---
+import { Data } from '../models';
+import Markdown from './Markdown.astro';
+
+export interface Props {
+    data: Data
+}
+const {data} = Astro.props;
+---
+
+<div class="introduction">
+  <Markdown markdown={data.introduction}/>
+    
+</div>
+<style lang="scss">
+  .introduction {
+    margin-top: 1rem;
+  }
+</style>

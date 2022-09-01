@@ -1,0 +1,26 @@
+@import 'reset.scss';
+
+:root {
+    --dark-text-color: #333333;
+    --main-text-color: rgb(90, 90, 90);
+    --background-color: white;
+    --left-column-color: #dddddd;
+    --left-column-background-color: #343346;
+}
+
+body {
+    font-family: 'open sans';
+    padding-bottom: 5rem;
+}
+
+@media print {
+    body {
+        font-size: 12px;
+    }
+}
+
+
+
+.hidden {
+    display:none;
+}

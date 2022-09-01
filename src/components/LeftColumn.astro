@@ -1,0 +1,108 @@
+---
+import { Data } from "../models";
+import SubHeader from "./SubHeader.astro";
+
+export interface Props {
+  data: Data;
+}
+const { data } = Astro.props;
+---
+
+<div class={`left-column`}>
+  <img class="portrait-photo" src={'/cvlogoblue.png'} />
+  <SubHeader darkTheme>Contact</SubHeader>
+  {
+    data.contact.map((x) => (
+      <div class="contact-info">
+        <strong>{x.name}</strong>
+        <span>{x.text}</span>
+      </div>
+    ))
+  }
+
+  <SubHeader darkTheme>Education</SubHeader>
+  {
+    data.education.map((x) => (
+      <div class="education-info">
+        <div class="year">{x.year}</div>
+        <div class="certification">{x.qualification}</div>
+        <div class="institution">{x.institution}</div>
+      </div>
+    ))
+  }
+
+  <div class="expertise-info">
+    <SubHeader darkTheme>Expertise</SubHeader>
+    <ul>
+      {
+        data.expertise.map((x) => (
+          <li>
+            <div class="title">{x.area}</div>
+            <div class="technology">
+             {x.items.join(', ')}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <style lang="scss">
+    .left-column {
+      background-color: var(--left-column-background-color);
+      color: var(--left-column-color);
+      padding: 2rem 2rem;
+      height: 100%;
+    }
+
+    .portrait-photo {
+    //   border-radius: 999px;
+      width: 80%;
+      max-width: 10rem;
+      margin-left: auto;
+      margin-right: auto;
+      aspect-ratio: 1 / 1;
+      box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    }
+
+    .expertise-info {
+      ul {
+        padding-left: 1rem;
+      }
+      li {
+        padding-bottom: 1rem;
+      }
+      .title {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      .technology {
+        font-size: 0.8rem;
+      }
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      strong {
+        font-weight: 700;
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+    }
+
+    .education-info {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      .year {
+      }
+      .certification {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+      .institution {
+        font-weight: 600;
+      }
+    }
+  </style>
+</div>

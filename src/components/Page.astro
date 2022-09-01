@@ -1,0 +1,91 @@
+---
+import LeftColumn from "../components/LeftColumn.astro";
+import { Data } from "../models";
+
+export interface Props {
+  data: Data;
+  pageNumber?: number;
+  totalPages?: number;
+}
+const { data, pageNumber, totalPages } = Astro.props;
+---
+
+<div class={`page page-${pageNumber || 1} ${pageNumber ? "print" : ""}`}>
+  <div class="left-column">
+    <LeftColumn data={data} />
+  </div>
+  <main>
+    <slot />
+    <footer>Page {pageNumber} of {totalPages}</footer>
+  </main>
+
+</div>
+<style lang="scss">
+  .page {
+    position:relative;
+    page-break-after: always;
+    display: grid;
+    footer {
+      display:none;
+    }
+    grid-template-columns: 20rem minmax(0, 80rem);
+    &:not(.page-1) {
+      .left-column {
+        display: none;
+      }
+    }
+  }
+
+  .page:not(.print) {
+    main {
+      padding-bottom: 6rem;
+    }
+  }
+  .page.print {
+    page-break-after: always;
+    overflow: hidden;
+
+    footer {
+      position:absolute;
+      right:1rem;
+      bottom:1rem;
+      z-index: 20;
+      display:block;
+      font-size: 0.8rem;
+    }
+  }
+  .page.print:not(.page-1) {
+    padding: 2rem;
+    grid-template-columns: minmax(0, 80rem);
+  }
+  @media screen and (max-width: 640px) {
+    .page:not(.print) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  @media print {
+    .page {
+      width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+    }
+    .page:not(.page-1) {
+      main::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 2rem;
+        z-index: 10;
+        background-color: white;
+      }
+    }
+  }
+
+  main {
+    padding: 2rem;
+    color: var(--main-text-color);
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+export interface Props {
+  darkTheme?: boolean;
+}
+const { darkTheme } = Astro.props;
+---
+
+<h2 class={darkTheme ? "dark" : ""}>
+  <slot />
+</h2>
+
+<style>
+  h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--dark-text-color);
+    border-bottom: 3px solid rgb(161, 161, 161);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  h2.dark {
+        color: var(--left-column-color);
+  }
+</style>

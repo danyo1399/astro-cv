@@ -1,0 +1,21 @@
+---
+import showdown from 'showdown';
+export interface Props {
+    markdown: string;
+}
+const {markdown} = Astro.props;
+
+const converter = new showdown.Converter();
+const html = converter.makeHtml(markdown.trim());
+---
+<div class="markdown-body" set:html={html}/>
+<style lang="scss" is:global>
+.markdown-body {
+    p {
+        margin-bottom: 1rem;
+    }
+    ul {
+        list-style-position: inside;
+    }
+}
+</style>
