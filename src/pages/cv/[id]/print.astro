@@ -37,9 +37,10 @@ function pageNo(index) {
 function isLastPage(index) {
   return index === (pages.length -1)
 }
+const title = `${data.profile.name.givenName} ${data.profile.name.surname} CV`
 ---
 
-<Layout title={data.pageTitle}>
+<Layout title={title} description={title}>
   {
     pages.map((x, index) => (
       <Page pageNumber={pageNo(index)} totalPages={pages.length} data={data}>

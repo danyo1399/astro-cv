@@ -1,6 +1,5 @@
 export interface Data {
     id:string,
-    pageTitle: string,
     profile: {
         name: { givenName: string, surname: string }, title: string,
     },

@@ -9,7 +9,7 @@ const { data } = Astro.props;
 ---
 
 <div class={`left-column`}>
-  <img class="portrait-photo" src={'/cvlogoblue.png'} />
+  <img class="portrait-photo" src={'/cvlogoblue.png'} alt="CV" />
   <SubHeader darkTheme>Contact</SubHeader>
   {
     data.contact.map((x) => (

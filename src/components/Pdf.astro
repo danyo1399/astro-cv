@@ -9,7 +9,7 @@ const { href, data } = Astro.props;
 const filename = `${data.profile.name.givenName}_${data.profile.name.surname}.pdf`
 ---
 
-<a href={href} download={filename} class={`pdf-download`}>
+<a href={href} download={filename} class={`pdf-download`} aria-label="Download PDF">
   <svg
     version="1.1"
     id="Layer_1"

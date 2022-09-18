@@ -2,7 +2,6 @@ import { Data } from "../models";
 
 export const demo: Data = {
     id: 'demo',
-    pageTitle: 'Bob Jones CV',
     profile: {
         name: { givenName: 'Bob', surname: 'Jones' },
         title: 'Senior Solutions Architect',
