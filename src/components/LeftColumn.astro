@@ -9,7 +9,7 @@ const { data } = Astro.props;
 ---
 
 <div class={`left-column`}>
-  <img class="portrait-photo" src={'/cvlogoblue.png'} alt="CV" />
+  <img class="portrait-photo" src={'/profile.jpg'} alt="CV" />
   <SubHeader darkTheme>Contact</SubHeader>
   {
     data.contact.map((x) => (
@@ -55,9 +55,10 @@ const { data } = Astro.props;
     }
 
     .portrait-photo {
-    //   border-radius: 999px;
+      border-radius: 50%;
+      object-fit: cover;
       width: 80%;
-      max-width: 10rem;
+      max-width: 16rem;
       margin-left: auto;
       margin-right: auto;
       aspect-ratio: 1 / 1;
