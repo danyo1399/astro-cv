@@ -7,8 +7,8 @@ const url = `http://localhost:3000/cv`;
 const outputPath = path.join(__dirname, '../public/cv');
 async function printPDF() {
   const browser = await puppeteer.launch({
-    headless: true,
-    ignoreHTTPSErrors: true
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: true
   });
 
   for (const key of data.map((x) => x.id)) {

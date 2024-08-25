@@ -6,13 +6,14 @@ export interface Props {
   data: Data;
   pageNumber?: number;
   totalPages?: number;
+  print?: boolean;
 }
-const { data, pageNumber, totalPages } = Astro.props;
+const { data, pageNumber, totalPages, print } = Astro.props;
 ---
 
 <div class={`page page-${pageNumber || 1} ${pageNumber ? "print" : ""}`}>
   <div class="left-column">
-    <LeftColumn data={data} />
+    <LeftColumn data={data} print={print} />
   </div>
   <main>
     <slot />

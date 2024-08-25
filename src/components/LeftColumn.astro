@@ -4,11 +4,12 @@ import SubHeader from "./SubHeader.astro";
 
 export interface Props {
   data: Data;
+  print?: bool;
 }
-const { data } = Astro.props;
+const { data, print } = Astro.props;
 ---
 
-<div class={`left-column`}>
+<div class={`left-column ${print ? 'print' : ''}`}>
   <img class="portrait-photo" src={'/profile.jpg'} alt="CV" />
   <SubHeader darkTheme>Contact</SubHeader>
   {
@@ -65,6 +66,9 @@ const { data } = Astro.props;
       box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     }
 
+   .print .expertise-info {
+      display: none;
+    }
     .expertise-info {
       ul {
         padding-left: 1rem;

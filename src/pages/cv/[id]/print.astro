@@ -4,6 +4,7 @@ import Page from "../../../components/Page.astro";
 import Heading from "../../../components/Heading.astro";
 import Introduction from "../../../components/Introduction.astro";
 import Experience from "../../../components/Experience.astro";
+import Expertise from "../../../components/Expertise.astro";
 import References from "../../../components/References.astro";
 import CompaniesGrid from "../../../components/CompaniesGrid.astro";
 import  allData from "../../../cvData";
@@ -43,9 +44,10 @@ const title = `${data.profile.name.givenName} ${data.profile.name.surname} CV`
 <Layout title={title} description={title}>
   {
     pages.map((x, index) => (
-      <Page pageNumber={pageNo(index)} totalPages={pages.length} data={data}>
+      <Page print pageNumber={pageNo(index)} totalPages={pages.length} data={data}>
         <Heading data={data} />
         {pageNo(index) === 1 && <Introduction data={data} />}
+        {pageNo(index) === 1 && <Expertise data={data} />}
         {pageNo(index) === 1 && <CompaniesGrid data={data} id={id.toString()} />}
         <Experience experience={pages[index]} />
         {isLastPage(index) && <References data={data} />}

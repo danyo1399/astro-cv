@@ -1,0 +1,59 @@
+---
+import { Data } from "../models";
+
+import SubHeader from "./SubHeader.astro";
+export interface Props {
+  data: Data;
+}
+const { data } = Astro.props;
+---
+
+  <div class="expertise-info">
+    <SubHeader >Expertise</SubHeader>
+    <ul class="list">
+      {
+        data.expertise.map((x) => (
+          <li>
+            <div class="title">{x.area}</div>
+            <div class="technology">
+             {x.items.join(', ')}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+<style lang="scss">
+.expertise-info {
+    margin-top:5rem;
+    margin-bottom:5rem;
+  }
+   .list {
+       padding-top:2rem;
+       margin-left:auto;
+       margin-right:auto;
+       width:max-content;
+    }
+li {
+    margin-bottom: 1rem;
+  }
+  .heading {
+    font-family: lato;
+
+    h1 {
+      color: var(--dark-text-color);
+      strong {
+        font-weight: 700;
+      }
+
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    [role="doc-subtitle"] {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+  }
+</style>
